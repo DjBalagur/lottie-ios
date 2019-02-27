@@ -104,7 +104,12 @@
     LOTComposition *laScene = [[LOTComposition alloc] initWithJSON:JSONObject withAssetBundle:[NSBundle mainBundle]];
     laScene.rootDirectory = [file stringByDeletingLastPathComponent];
     self.lottieLogo.sceneModel = laScene;
-    [self.lottieLogo play];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"startRecord" object:nil];
+      [self.lottieLogo playWithCompletion:^(BOOL animationFinished) {
+          if (animationFinished) {
+              [[NSNotificationCenter defaultCenter] postNotificationName:@"stopRecord" object:nil];
+          }
+      }];
   }
 }
 

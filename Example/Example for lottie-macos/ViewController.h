@@ -7,9 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <AVFoundation/AVCaptureOutput.h>
 
-@interface ViewController : NSViewController
+@class AVCaptureSession, AVCaptureScreenInput, AVCaptureMovieFileOutput;
 
+@interface ViewController : NSViewController <AVCaptureFileOutputDelegate,AVCaptureFileOutputRecordingDelegate>
+
+@property (strong) AVCaptureSession *captureSession;
+@property (strong) AVCaptureScreenInput *captureScreenInput;
 
 @end
 
